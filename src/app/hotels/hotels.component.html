@@ -1,0 +1,25 @@
+<a routerLink="add-hotel">Tạo mới</a>
+<table class="table table-stripped">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Logo</th>
+    <th>Address</th>
+    <th>
+      <a routerLink="add-hotel" class="btn btn-success">Tạo mới</a>
+    </th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hotel of hotels">
+      <td>{{hotel.id}}</td>
+      <td>{{hotel.name}}</td>
+      <td>
+        <img [src]="hotel.logo" class="img img-avatar" width="100">
+      </td>
+      <td>{{hotel.address}}</td>
+      <td>
+        <a [routerLink]="['edit-hotel', hotel.id]" class="btn btn-info">Sửa</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

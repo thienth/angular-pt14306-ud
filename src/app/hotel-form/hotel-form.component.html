@@ -1,0 +1,34 @@
+<pre> {{hotelForm.value | json}} </pre>
+<form [formGroup]="hotelForm">
+  <div>
+    <label for="">Tên khách sạn:</label>
+    <input type="text" formControlName="name">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+      class="alert alert-danger">
+      <div *ngIf="name.errors.required">
+        Hãy điền tên khách sạn
+      </div>
+      <div *ngIf="name.errors.minlength">
+        Tên khách sạn không được ít hơn 4 ký tự
+      </div>
+      <div *ngIf="name.errors.maxlength">
+        Tên khách sạn không được vượt quá 20 ký tự
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="">Logo khách sạn:</label>
+    <input type="text" formControlName="logo">
+  </div>
+  <div>
+    <label for="">Địa chỉ khách sạn:</label>
+    <input type="text" formControlName="address">
+  </div>
+  <div>
+    <label for="">Đất nước:</label>
+    <input type="text" formControlName="country">
+  </div>
+  <div>
+    <button (click)="saveHotel()">Lưu</button>
+  </div>
+</form>
