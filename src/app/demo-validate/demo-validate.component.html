@@ -23,13 +23,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">Họ và tên</label>
+                    <label for="">Địa chỉ</label>
                     <input type="text" formControlName="address" class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label for="">Họ và tên</label>
+                    <label for="">Website</label>
                     <input type="text" formControlName="websiteUrl" class="form-control">
+                    <div *ngIf="websiteUrl.invalid && (websiteUrl.touched || websiteUrl.dirty)">
+                        <p *ngIf="websiteUrl.errors.required" class="text-danger">Hãy nhập đường dẫn website của bạn</p>
+                        <p *ngIf="websiteUrl.errors.urlValid" class="text-danger">Đường dẫn website không đúng định dạng</p>
+                    </div>
                 </div>
 
                 <div class="text-center">

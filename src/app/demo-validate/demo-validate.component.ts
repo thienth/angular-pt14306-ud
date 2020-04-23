@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms'
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {urlValidator} from '../validators/custom.validators';
 @Component({
   selector: 'app-demo-validate',
   templateUrl: './demo-validate.component.html',
@@ -20,10 +21,14 @@ export class DemoValidateComponent implements OnInit {
       Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
     ]),
     address: new FormControl(''),
-    websiteUrl: new FormControl('')
+    websiteUrl: new FormControl('', [
+      Validators.required,
+      urlValidator
+    ])
   });
   get name() { return this.portfolioForm.get('name'); }
   get avatarUrl() { return this.portfolioForm.get('avatarUrl'); }
+  get websiteUrl() { return this.portfolioForm.get('websiteUrl'); }
 
   ngOnInit(): void {
   }
