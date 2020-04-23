@@ -19,6 +19,15 @@
   <div>
     <label for="">Logo khách sạn:</label>
     <input type="text" formControlName="logo">
+    <div *ngIf="logo.invalid && (logo.dirty || logo.touched)"
+      class="alert alert-danger">
+      <div *ngIf="logo.errors.required">
+        Hãy nhập logo khách sạn
+      </div>
+      <div *ngIf="logo.errors.pattern">
+        Bắt buộc nhập đường dẫn ảnh
+      </div>
+    </div>
   </div>
   <div>
     <label for="">Địa chỉ khách sạn:</label>
@@ -29,6 +38,19 @@
     <input type="text" formControlName="country">
   </div>
   <div>
-    <button (click)="saveHotel()">Lưu</button>
+    <label for="">Website:</label>
+    <input type="text" formControlName="website">
+    <div *ngIf="website.invalid && (website.dirty || website.touched)"
+      class="alert alert-danger">
+      <div *ngIf="website.errors.required">
+        Hãy nhập website khách sạn
+      </div>
+      <div *ngIf="website.errors.urlValid">
+        Không đúng đường dẫn website
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="saveHotel()" [disabled]="hotelForm.invalid">Lưu</button>
   </div>
 </form>

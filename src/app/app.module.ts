@@ -11,6 +11,7 @@ import { HotelsComponent } from './hotels/hotels.component';
 import { HotelService } from './hotel.service';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { HotelFormComponent } from './hotel-form/hotel-form.component';
+import { DemoValidateComponent } from './demo-validate/demo-validate.component';
 
 
 @NgModule({
@@ -19,12 +20,13 @@ import { HotelFormComponent } from './hotel-form/hotel-form.component';
     ReactiveFormsModule, 
     RouterModule.forRoot([
       {path: '', component: HotelsComponent},
+      {path: 'demo-validate', component: DemoValidateComponent},
       {path: 'detail/:hotelId', component: HotelDetailComponent},
       {path: 'add-hotel', component: HotelFormComponent},
       {path: 'edit-hotel/:id', component: HotelFormComponent}
     ])
   ],
-  declarations: [ AppComponent, ConverGenderPipe, HotelsComponent, HotelDetailComponent, HotelFormComponent ],
+  declarations: [ AppComponent, ConverGenderPipe, HotelsComponent, HotelDetailComponent, HotelFormComponent, DemoValidateComponent ],
   bootstrap:    [ AppComponent ],
   providers: [HotelService]
 })

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="">
+        <form [formGroup]="portfolioForm">
+            <div class="col-6 offset-3">
+                <div class="form-group">
+                    
+                    <label for="">Họ và tên </label>
+                    <input type="text" formControlName="name" class="form-control">
+                    <div *ngIf="name.invalid && (name.touched || name.dirty)">
+                        <p *ngIf="name.errors.required" class="text-danger">Hãy điền họ và tên</p>
+                        <p *ngIf="name.errors.minlength" class="text-danger">Họ và tên có ít nhất 4 ký tự</p>
+                        <p *ngIf="name.errors.maxlength" class="text-danger">Họ và tên có nhiều nhất nhất 20 ký tự</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Avatar</label>
+                    <input type="text" formControlName="avatarUrl" class="form-control">
+                    <div *ngIf="avatarUrl.invalid && (avatarUrl.touched || avatarUrl.dirty)">
+                        <p *ngIf="avatarUrl.errors.required" class="text-danger">Hãy nhập đường dẫn avatar</p>
+                        <p *ngIf="avatarUrl.errors.pattern" class="text-danger">Đường dẫn file không đúng định dạng ảnh</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Họ và tên</label>
+                    <input type="text" formControlName="address" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Họ và tên</label>
+                    <input type="text" formControlName="websiteUrl" class="form-control">
+                </div>
+
+                <div class="text-center">
+                    <button [disabled]="portfolioForm.invalid" type="button" class="btn btn-sm btn-info">Lưu</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

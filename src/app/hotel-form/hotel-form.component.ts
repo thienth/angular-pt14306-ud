@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HotelService } from '../hotel.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {urlValidator} from '../validators/custom.validators';
 @Component({
   selector: 'app-hotel-form',
   templateUrl: './hotel-form.component.html',
@@ -16,11 +17,20 @@ export class HotelFormComponent implements OnInit {
       Validators.minLength(4),
       Validators.maxLength(20)
     ]),
-    logo: new FormControl(''),
+    logo: new FormControl('', [
+      Validators.required, 
+      Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
+    ]),
     address: new FormControl(''),
-    country: new FormControl('')
+    country: new FormControl(''),
+    website: new FormControl('', [
+      Validators.required,
+      urlValidator
+    ])
   });
   get name() { return this.hotelForm.get('name'); }
+  get logo() { return this.hotelForm.get('logo'); }
+  get website() { return this.hotelForm.get('website'); }
 
 
   constructor(
@@ -39,6 +49,9 @@ export class HotelFormComponent implements OnInit {
   }
 
   saveHotel(){
+    if(this.hotelForm.invalid){
+      return false;
+    }
     if(this.hotelForm.value.id == null){
       // thêm mới
       this.hotelService.addNewHotel(this.hotelForm.value).subscribe(data => {
