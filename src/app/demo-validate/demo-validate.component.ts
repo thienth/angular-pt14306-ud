@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {urlValidator} from '../validators/custom.validators';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-demo-validate',
   templateUrl: './demo-validate.component.html',
@@ -8,7 +9,8 @@ import {urlValidator} from '../validators/custom.validators';
 })
 export class DemoValidateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) {}
+
   cities = [
     {
       id: 1,
@@ -45,11 +47,21 @@ export class DemoValidateComponent implements OnInit {
       urlValidator
     ])
   });
+  progress = 30;
   get name() { return this.portfolioForm.get('name'); }
   get avatarUrl() { return this.portfolioForm.get('avatarUrl'); }
   get websiteUrl() { return this.portfolioForm.get('websiteUrl'); }
 
   ngOnInit(): void {
+  }
+
+  open(content) {
+    this.modalService.open(content, { size: 'xl', backdropClass: 'light-blue-backdrop' });
+  }
+
+  changeProgress(){
+    let newSize = prompt("Nhập % mới");
+    this.progress = parseInt(newSize);
   }
 
 }
