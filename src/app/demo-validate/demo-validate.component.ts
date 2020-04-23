@@ -9,6 +9,24 @@ import {urlValidator} from '../validators/custom.validators';
 export class DemoValidateComponent implements OnInit {
 
   constructor() { }
+  cities = [
+    {
+      id: 1,
+      name: "Hà Nội"
+    },
+    {
+      id: 2,
+      name: "Hải Phòng"
+    },
+    {
+      id: 3,
+      name: "Nam Định"
+    },
+    {
+      id: 4,
+      name: "Thái Bình"
+    }
+  ];
 
   portfolioForm = new FormGroup({
     name: new FormControl('', [
@@ -21,6 +39,7 @@ export class DemoValidateComponent implements OnInit {
       Validators.pattern(/\.(gif|jpe?g|tiff|png|webp|bmp)$/i)
     ]),
     address: new FormControl(''),
+    city: new FormControl(''),
     websiteUrl: new FormControl('', [
       Validators.required,
       urlValidator
